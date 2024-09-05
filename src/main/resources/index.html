@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller 03 Lab AREP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e0f7fa;
+            color: #333;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background-color: #2196F3;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+        }
+        section {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            font-size: 26px;
+            margin-bottom: 10px;
+            color: #1565C0;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: inline-block;
+            color: #1E88E5;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #90CAF9;
+            border-radius: 4px;
+            background-color: #E3F2FD;
+        }
+        input[type="button"] {
+            background-color: #1E88E5;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            width: 100%;
+        }
+        input[type="button"]:hover {
+            background-color: #1565C0;
+        }
+        #getrespmsg {
+            margin-top: 20px;
+            font-style: italic;
+            color: #0D47A1;
+        }
+        .image-container {
+            margin-top: 20px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Taller 03 Lab AREP</h1>
+</header>
+
+<main>
+    <section>
+        <h1>Servicios con GET</h1>
+        <form action="/hello">
+            <label for="name">Servicio:</label><br>
+            <input type="text" id="name" name="name" value="Pon tu servicio..."><br><br>
+            <input type="button" value="Buscar!" onclick="loadGetMsg()">
+        </form>
+        <div id="getrespmsg"></div>
+        <!-- Imagen añadida -->
+        <div class="image-container">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQygdRAm1ogI7nVF9bniROQeBm_3gRzZhqNtA&s" alt="Descripción de la imagen">
+        </div>
+    </section>
+</main>
+
+<script>
+    function loadGetMsg() {
+        let nameVar = document.getElementById("name").value;
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+            document.getElementById("getrespmsg").innerHTML =
+            this.responseText;
+        }
+        xhttp.open("GET", "/" + nameVar);
+        xhttp.send();
+    }
+</script>
+
+</body>
+</html>
